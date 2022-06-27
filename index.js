@@ -1,46 +1,85 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 var animate;
-
+let number = 0
+// The time in 'ms' that the code must wait before running the next frame
+let speed = 1
+// The width and height of each square cell
 const resolution = 25;
-canvas.width = 750;
+canvas.width = 800;
 canvas.height = 500;
- 
+
+let r = 152
+let g = 152
+let b = 255
+
 // Finds the number of columns and rows based on resolution
 const COLS = canvas.width / resolution;
 const ROWS = canvas.height / resolution;
  
 // Function will create a grid with the relative dimensions and
 // fill them with the state declared (1: all dead, 2: 50% alive)
-function buildGrid(cellState) {
+function buildGrid(cellState) { 
+  console.log("Build:", cellState)
   return new Array(COLS).fill(null)
     .map(() => new Array(ROWS).fill(null)
       .map(() => Math.floor(Math.random() * (cellState + 1))));
   }
+
 // Calls function to build the initial clear grid
 // and renders the grid on the canvas
 let grid = buildGrid(1);
 single_FrameUpdate();
+
 // Used to show only the next generation of cells
 function single_FrameUpdate() {
-  console.log("single")
+  console.log("Next Frame")
   grid = nextGen(grid);
   render(grid);
 }
+
 // Used to animate the canvas by running through each generation
 // and displaying the cell state at a fast rate
-function multi_FrameUpdate() {
-  grid = nextGen(grid);
-  console.log("multi")
-  render(grid);
-  animate = requestAnimationFrame(multi_FrameUpdate);
+function loop_Frames(time) {
+  // Function will wait for the difference in time to be the
+  // value of speed or greater before generating the next frame
+  let diff = time - number;
+  document.getElementById("frames").innerHTML = 'FPS: ' + Math.round(1000/diff);
+  if (diff >= speed) {
+    console.log("Time: ", diff)
+    number = time
+    grid = nextGen(grid);
+    render(grid);
+  }
+  animate = requestAnimationFrame(loop_Frames);
 }
- 
+
+// Acts a toggle for the Run button, 
+function run_stop() {
+  value = document.getElementById("RunAndStopButton").innerHTML
+  console.log(value)
+  // If button says 'Run' and grid is not empty, button is toggled
+  if (value === "Run" & grid != undefined) {
+    requestAnimationFrame(loop_Frames)
+    document.getElementById("RunAndStopButton").innerHTML = "Stop";
+    return
+  }
+  // If button says 'Stop', this code will run and toggle the button
+  cancelAnimationFrame(animate)
+  document.getElementById("RunAndStopButton").innerHTML = "Run";
+}
+
+// This function will build an empty grid, render the array,
+// and cancel the animation of the loop() function
 function clear_grid() {
+  console.log("Clear")
+  // Create a empty 2D array
   grid = buildGrid(0); 
   render(grid);
+  // Switches button from 'Stop' to 'Run' and stops animation
+  document.getElementById("RunAndStopButton").innerHTML = "Run";
   if(animate) {
-  cancelAnimationFrame(animate)
+    cancelAnimationFrame(animate)
   }
 }
 // This function creates a new array with the grid properties of
@@ -93,11 +132,19 @@ function nextGen(grid) {
   }
   return nextGen;
 }
+
+function setRGB(hexRGB) {
+  // 'ColorPicker' widget gives a string with format #rrggbb
+  light.set_rgb(parseInt(hexRGB.replace('#', '0x'), 16));
+  properties.rgb = hexRGB;
+  vizibles.update({rgb: properties.rgb});
+}
  
 // Renders the grid on the canvas by drawing a small
 // square of dimensions declared by the resolution
 // for each element in the 2D array
 function render(grid) {
+  var randomColor = Math.floor(Math.random()*16777215).toString(16);
   for (let col = 0; col < grid.length; col++) {
     for (let row = 0; row < grid[col].length; row++) {
       const cell = grid[col][row];
@@ -105,12 +152,12 @@ function render(grid) {
       ctx.beginPath();
       // Draws dimensions of square
       ctx.rect(col * resolution, row * resolution, resolution, resolution);
-      // If cell is "true" or (1) the new fill colour is #9898FF (Light Blue)
+      // If cell is "true" or (1) the new fill colour is #9898FF (Light Blue / Purple)
       // If cell is "false" or (2) the new fill colour is #f3f3f3 (Light Grey)
-      ctx.fillStyle = cell ? '#9898FF' : '#f3f3f3';
+      ctx.fillStyle = cell ? '#9898ff' : '#f3f3f3';
       ctx.fill();
       ctx.strokeStyle = '#666666'
-      ctx.stroke()
-    }
+      ctx.lineWidth = resolution * 0.01;
+      ctx.stroke()    }
   }
 }

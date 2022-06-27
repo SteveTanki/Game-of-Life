@@ -20,11 +20,12 @@
 
 body {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100vh;
-  background: var(--color-black-1);
+  background: var(--color-black-2);
 }
 a {
   position: relative;
@@ -41,17 +42,16 @@ a {
   border: 1px solid var(--color-red);
   &:hover {
     border: 1px solid transparent;
-    background: var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px
+    background: var(--color-purple) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px
     transition-delay: 0.8s;
     background-size: 180px;
     animation: animate var(--speed-fast) steps(8) forwards;
   }
-  &:last-of-type {
     border: 1px solid var(--color-purple);
     &:hover {
       background: var(--color-purple) url(https://i.postimg.cc/FzBWFtKM/pixel2.png); // 360px x 1080px
     }
-  }
+  
 }
 @keyframes animate {
   0% {

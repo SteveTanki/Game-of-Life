@@ -1,13 +1,39 @@
+<!doctype html>
 <html lang="en">
 <head>
   <link rel="stylesheet" href="testing.css">
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=">
-  <title></title>
+  <title>Game of Life</title>
 </head>
+
+<style>
+* {
+  box-sizing: border-box; 
+}
+body {
+  display: flex;
+  min-height: 95vh;
+  flex-direction: column;
+  margin: 0;
+}
+#main {
+  display: flex;
+}
+#crain {
+  display: flex;
+  height: 50px;
+}
+
+</style>
 <body>
-  <a href="javascript:void(0);">Pixel button</a>
-  <a href="javascript:void(0);">Hover effects</a>
+  <canvas></canvas>
+  <script src="index.js"></script>
+  <p style="color: white" id="frames">FPS</p>
+  <div id="crain">
+    <a href="javascript:void(0); " onclick="run_stop();" id="RunAndStopButton">Run</a>
+    <a href="javascript:void(0); " onclick="single_FrameUpdate();">Next Gen</a>
+    <a href="javascript:void(0); " onclick="grid = clear_grid()">Clear Grid</a>
+    <a href="javascript:void(0); " onclick="grid = buildGrid(1); single_FrameUpdate();">Randomise Grid</a>
+    <a href="javascript:void(0); " onclick="window.location.reload();">Refresh</a>
+  </div>
 </body>
-</html>
