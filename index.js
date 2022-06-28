@@ -1,9 +1,10 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 var animate;
+var population = 0
 let number = 0
 // The time in 'ms' that the code must wait before running the next frame
-let speed = 1
+let speed = 150
 // The width and height of each square cell
 const resolution = 25;
 canvas.width = 800;
@@ -44,13 +45,15 @@ function loop_Frames(time) {
   // Function will wait for the difference in time to be the
   // value of speed or greater before generating the next frame
   let diff = time - number;
-  document.getElementById("frames").innerHTML = 'FPS: ' + Math.round(1000/diff);
   if (diff >= speed) {
+    document.getElementById("frames").innerHTML = 'FPS: ' + Math.round(1000/diff);
     console.log("Time: ", diff)
     number = time
     grid = nextGen(grid);
+    document.getElementById("pop").innerHTML = 'Population: ' + population;
     render(grid);
   }
+
   animate = requestAnimationFrame(loop_Frames);
 }
 
@@ -86,6 +89,7 @@ function clear_grid() {
 // the next generation and gives each cell its respective
 // state, (0: dead) or (1: alive)
 function nextGen(grid) {
+  population = 0
   // Copies the entered 2D array to maintain the initial cell states
   // when updating each cell relative to it's neighbours without changing
   // the number of  neighbouring cells of another cell
@@ -99,6 +103,7 @@ function nextGen(grid) {
   for (let col = 0; col < grid.length; col++) {
     for (let row = 0; row < grid[col].length; row++) {
       const cell = grid[col][row];
+      population += cell
       let numNeighbours = 0;
       for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
@@ -128,6 +133,8 @@ function nextGen(grid) {
       } else if (cell === 0 && numNeighbours === 3) {
         nextGen[col][row] = 1;
       }
+
+      
     }
   }
   return nextGen;
