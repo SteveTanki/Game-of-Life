@@ -19,22 +19,23 @@ body {
 #main {
   display: flex;
 }
-#crain {
-  display: flex;
-  height: 50px;
-}
+
 
 </style>
 <body>
   <canvas></canvas>
   <script src="index.js"></script>
-  <p style="text-align: right; color: white;" id="frames">FPS: </p>
-  <p style="text-align: right; color: white;" id="pop">Population: </p>
-  <div id="crain">
+  <p> 
+    <br>
+    <span style="text-align: left; color: white;" id="frames">FPS:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+    <span style="text-align: left; color: white;" id="pop">Population: </span>
+  </p>
+
+  <div id="main">
     <a href="javascript:void(0); " onclick="run_stop();" id="RunAndStopButton">Run</a>
     <a href="javascript:void(0); " onclick="single_FrameUpdate();">Next Gen</a>
-    <a href="javascript:void(0); " onclick="grid = clear_grid()">Clear Grid</a>
-    <a href="javascript:void(0); " onclick="grid = buildGrid(1); single_FrameUpdate();">Randomise Grid</a>
+    <a href="javascript:void(0); " onclick="grid = clear_grid();">Clear Grid</a>
+    <a href="javascript:void(0); " onclick="randomise_Grid();">Randomise Grid</a>
     <a href="javascript:void(0); " onclick="window.location.reload();">Refresh</a>
   </div>
 </body>
