@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="testing.css">
+  <link rel="stylesheet" href="PixelatedButtons.css">
   <meta charset="UTF-8">
   <title>Game of Life</title>
 </head>
@@ -25,10 +25,18 @@ body {
 <body>
   <canvas></canvas>
   <script src="index.js"></script>
+  <p> 
+    <br>
+    <span style="text-align: left; color: white;" id="frames">FPS:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+    <span style="text-align: left; color: white;" id="pop">Population:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+    <span style="text-align: left; color: white;" id="gen">Generation: </span>
+  </p>
+
   <div id="main">
     <a href="javascript:void(0); " onclick="run_stop();" id="RunAndStopButton">Run</a>
     <a href="javascript:void(0); " onclick="single_FrameUpdate();">Next Gen</a>
-    <a href="javascript:void(0); " onclick="grid = clear_grid()">Clear Grid</a>
-    <a href="javascript:void(0); " onclick="grid = buildGrid(1); single_FrameUpdate();">Randomise Grid</a>
+    <a href="javascript:void(0); " onclick="grid = clear_grid();">Clear Grid</a>
+    <a href="javascript:void(0); " onclick="randomise_Grid();">Randomise Grid</a>
     <a href="javascript:void(0); " onclick="window.location.reload();">Refresh</a>
   </div>
+</body>

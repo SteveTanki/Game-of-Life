@@ -1,14 +1,15 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 var animate;
+var generation = -1
 var population = 0
 let number = 0
 var First_Passthrough = 0
 
 // The time in 'ms' that the code must wait before running the next frame
-let speed = 50
+let speed = 1
 // The width and height of each square cell
-const resolution = 10;
+const resolution = 5;
 canvas.width = 800;
 canvas.height = 500;
 var TotalCells = (canvas.width/resolution) * (canvas.height/resolution)
@@ -34,6 +35,7 @@ single_FrameUpdate();
 function randomise_Grid() {
   First_Passthrough = 0
   grid = buildGrid(1);
+  generation = -1
   single_FrameUpdate();
 }
 
@@ -42,6 +44,9 @@ function single_FrameUpdate() {
   console.log("Next Frame")
   grid = nextGen(grid);
   render(grid);
+  generation++
+  document.getElementById("pop").innerHTML = 'Population: ' + population + '\xa0\xa0\xa0\xa0|\xa0\xa0\xa0';
+  document.getElementById("gen").innerHTML = 'Generation: ' + generation;
 }
 
 // Used to animate the canvas by running through each generation
@@ -55,8 +60,11 @@ function loop_Frames(time) {
     console.log("Time: ", diff)
     number = time
     grid = nextGen(grid);
-    document.getElementById("pop").innerHTML = 'Population: ' + population;
+    document.getElementById("pop").innerHTML = 'Population: ' + population + '\xa0\xa0\xa0\xa0|\xa0\xa0\xa0';
     render(grid);
+    generation++
+    document.getElementById("gen").innerHTML = 'Generation: ' + generation;
+
   }
 
   animate = requestAnimationFrame(loop_Frames);
@@ -89,6 +97,10 @@ function clear_grid() {
   if(animate) {
     cancelAnimationFrame(animate)
   }
+  population = 0
+  generation = 0
+  document.getElementById("pop").innerHTML = 'Population: ' + population + '\xa0\xa0\xa0\xa0|\xa0\xa0\xa0';
+  document.getElementById("gen").innerHTML = 'Generation: ' + generation;
 }
 // This function creates a new array with the grid properties of
 // the next generation and gives each cell its respective
@@ -144,13 +156,6 @@ function nextGen(grid) {
   }
   return nextGen;
 }
-
-function setRGB(hexRGB) {
-  // 'ColorPicker' widget gives a string with format #rrggbb
-  light.set_rgb(parseInt(hexRGB.replace('#', '0x'), 16));
-  properties.rgb = hexRGB;
-  vizibles.update({rgb: properties.rgb});
-}
  
 // Renders the grid on the canvas by drawing a small
 // square of dimensions declared by the resolution
@@ -177,3 +182,4 @@ function render(grid) {
       ctx.stroke()    }
   }
 }
+
