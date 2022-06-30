@@ -7,9 +7,9 @@ let number = 0
 var First_Passthrough = 0
 
 // The time in 'ms' that the code must wait before running the next frame
-let speed = 1
+let speed = 25
 // The width and height of each square cell
-const resolution = 25;
+const resolution = 10;
 canvas.width = 800;
 canvas.height = 500;
 var TotalCells = (canvas.width/resolution) * (canvas.height/resolution)
