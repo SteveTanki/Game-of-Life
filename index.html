@@ -24,13 +24,14 @@ body {
 </style>
 <body>
   <canvas></canvas>
-  <script src="index.js"></script>
   <p> 
     <br>
     <span style="text-align: left; color: white;" id="frames">FPS:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
     <span style="text-align: left; color: white;" id="pop">Population:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
     <span style="text-align: left; color: white;" id="gen">Generation: </span>
   </p>
+  <script src="index.js"></script>
+  <script>let grid = buildGrid(1); single_FrameUpdate()</script>
 
   <div id="main">
     <a href="javascript:void(0); " onclick="run_stop();" id="RunAndStopButton">Run</a>

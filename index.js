@@ -9,7 +9,7 @@ var First_Passthrough = 0
 // The time in 'ms' that the code must wait before running the next frame
 let speed = 1
 // The width and height of each square cell
-const resolution = 5;
+const resolution = 25;
 canvas.width = 800;
 canvas.height = 500;
 var TotalCells = (canvas.width/resolution) * (canvas.height/resolution)
@@ -29,8 +29,8 @@ function buildGrid(cellState) {
 
 // Calls function to build the initial clear grid
 // and renders the grid on the canvas
-let grid = buildGrid(1);
-single_FrameUpdate();
+// let grid = buildGrid(1);
+// single_FrameUpdate();
 
 function randomise_Grid() {
   First_Passthrough = 0
