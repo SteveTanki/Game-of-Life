@@ -1,0 +1,128 @@
+body {
+	font-size: 100%;
+	font-family: "Poppins", sans-serif;
+	background: #222222;
+}
+/* -------------------------------- 
+Popup
+-------------------------------- */
+.popup-trigger {
+	font-family: "Poppins", sans-serif;
+
+  position: absolute;
+  width: 110px;
+  height: 110px;
+	top:50%; right: 10%; 
+  margin: -75px 0 0 -75px;
+	text-align: center;
+  border: 6px solid #8181ea;
+	color: #f3f3f3;
+	font-size: 2em;
+	font-weight: bold;
+	border-radius: 100%;
+	text-decoration: none;
+	
+}
+
+/* -------------------------------- 
+
+
+
+xpopup 
+
+-------------------------------- */
+.popup {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #222222;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: opacity 1.0s 0s, visibility 0s 1.0s;
+	-moz-transition: opacity 1.0s 0s, visibility 0s 1.0s;
+	transition: opacity 1.0s 0s, visibility 0s 1.0s;
+}
+.popup.is-visible {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 1.0s 0s, visibility 0s 0s;
+	-moz-transition: opacity 1.0s 0s, visibility 0s 0s;
+	transition: opacity 1.0s 0s, visibility 0s 0s;
+}
+.popup-container {
+	position: relative;
+	width: 90%;
+	max-width: 750px;
+	top: 40%;
+	margin: 3em auto;
+	background: #c2c2c2;
+	border-top: 20px solid #710ce8;
+	border-bottom: 20px solid #710ce8;
+	box-shadow: 0 0 15px #710ce8;
+	-webkit-transform: translateY(-40px);
+	-moz-transform: translateY(-40px);
+	-ms-transform: translateY(-40px);
+	-o-transform: translateY(-40px);
+	transform: translateY(-40px);
+	/* Force Hardware Acceleration in WebKit */
+	-webkit-backface-visibility: hidden;
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	transition-property: transform;
+	-webkit-transition-duration: 1.5s;
+	-moz-transition-duration: 1.5s;
+	transition-duration: 1.5s;
+}
+
+.centerImage
+{
+ text-align:center;
+ display:block;
+ margin: 0.25em auto;
+
+}
+
+.popup-container-content {
+	padding: 3em 3em 5em 3em;
+}
+.popup-container-content p {
+	margin: 1.5em 0 0 0;
+	line-height: 1.5em;
+}
+.popup-container .button {
+	background: #183964;
+	font-size: 0.85em;
+	display: inline-block;
+	color: #FFF;
+	padding: 2em;
+	bottom: -2.5em;
+	left: 3em;
+	position: absolute;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 500;
+	text-align: center;
+	letter-spacing: 0.25em;
+	transition: all 1s ease 0s;
+	-moz-transition: all 1s ease 0s;
+	-webkit-transition: all 1s ease 0s;
+	border-right: 1px solid black;
+}
+.popup-container .button:hover {
+	background: #006F7C;
+}
+.popup-container .popup-close {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	color: #183964;
+}
+.is-visible .popup-container {
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}

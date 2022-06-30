@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="SpeedButtons.css">
   <link rel="stylesheet" href="PixelatedButtons.css">
   <meta charset="UTF-8">
   <title>Game of Life</title>
 </head>
+
 
 <style>
 * {
@@ -25,29 +25,14 @@ body {
 </style>
 <body>
   <canvas></canvas>
-  <script src="index.js"></script>
   <p> 
     <br>
     <span style="text-align: left; color: white;" id="frames">FPS:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
     <span style="text-align: left; color: white;" id="pop">Population:&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
     <span style="text-align: left; color: white;" id="gen">Generation: </span>
-    <div class="multi-button">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-      <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin.min.js"></script>
-      <script src="SpeedButtons.js"></script>
-      <button>
-        <i class="fas fa-cut"></i>
-        <div class="animate-normal ">Cut</div>
-      </button>
-    Speed
-      <button>
-        <i class="fas fa-paste"></i>
-        <div class="animate-normal ">Paste</div>
-      </button>
-    </div>
-
-    
   </p>
+  <script src="index.js"></script>
+  <script>let grid = buildGrid(1); single_FrameUpdate()</script>
 
   <div id="main">
     <a href="javascript:void(0); " onclick="run_stop();" id="RunAndStopButton">Run</a>
@@ -56,4 +41,28 @@ body {
     <a href="javascript:void(0); " onclick="randomise_Grid();">Randomise Grid</a>
     <a href="javascript:void(0); " onclick="window.location.reload();">Refresh</a>
   </div>
+  
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script src="HelpButton.js"></script>
+  <link rel="stylesheet" href="HelpButton.css">
+  <a href="#0" class="popup-trigger icon-botton" style="right:1vw; top:9vh;"><i class="fa fa-question-circle fa-5x"><img src="./Images/PixelQuestionMark.png" height ="100" width="100" /></i></a>
+<div class="popup" role="alert">
+	<div class="popup-container">
+    <div class="popup-container-content" >
+      <p>Underpopulation - If a dead cell has zero to one (0 - 1) living neighbouring cells will die off.
+        <img src="./Images/Rules/image1.png" height ="25%" width="25%" class="centerImage"/>
+        Survival - If a cell is alive and has two to three (2 - 3) living neighbouring cells, it will remain alive or stable.
+        <img src="./Images/Rules/image2.png" height ="25%" width="25%" class="centerImage"/>
+        Overpopulation - If a living cell has more than three (4+) neighbouring cells, it will die off.
+        <img src="./Images/Rules/image3.png" height ="25%" width="25%" class="centerImage"/>
+        Zombification - If a dead cell has three (3) living neighbours, it comes to life.
+        <img src="./Images/Rules/image4.png" height ="25%" width="25%" class="centerImage"/>
+        Stable - In some cases, a cell may satisfy all four rules and still not change states in the next generation. 
+        <img src="./Images/Rules/image5.png" height ="25%" width="25%"  class="centerImage"/>
+        You can choose to run each generation at a fast rate creating an animation of frames, or simply click through each generation to better understand the cell’s rules
+         </p>
+	</div> <!-- popup-container -->
+</div> <!-- popup -->
+</div>
+  
 </body>
